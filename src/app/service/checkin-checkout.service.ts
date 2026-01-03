@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Reserva } from './reserva.service';
 
 export interface CheckinCheckout {
-  id_check?: number;
+  id_check?: any;
   fecha_checkin: Date | string;
   fecha_checkout: Date | string;
   reserva: Reserva;

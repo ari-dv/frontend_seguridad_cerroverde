@@ -5,7 +5,7 @@ import { Reserva } from './reserva.service';
 import { Conductores } from './conductores.service';
 
 export interface Recojos {
-  id_recojo?: number;
+  id_recojo?: any;
   destino: string;
   fecha_hora: Date | string;
   estado: number;

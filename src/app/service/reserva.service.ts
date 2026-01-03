@@ -6,7 +6,7 @@ import { Salones, SalonReserva } from './salones.service';
 import { Cliente } from './clientes.service';
 
 export interface Reserva {
-  id_reserva?: number;
+  id_reserva?: any;
   fecha_inicio: Date | string;
   fecha_fin: Date | string;
   estado_reserva: string;

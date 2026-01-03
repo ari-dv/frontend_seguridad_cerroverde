@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Cliente {
-  idCliente?: number | null;
+  idCliente?: any | null;
   dniRuc: string;
   nombre: string;
   telefono: string;

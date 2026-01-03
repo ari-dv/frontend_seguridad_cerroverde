@@ -64,6 +64,7 @@ import { DashboardInicioComponent } from './pages/admin/reportes/dashboard-inici
 import { ListarLimpiezaComponent } from './pages/admin/listar-limpiezas/listar-limpiezas.component';
 import { ListarPersonalLimpiezaComponent } from './pages/admin/listar-personal-limpieza/listar-personal-limpieza.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
+import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
 
 const routes: Routes = [
   {
@@ -176,7 +177,7 @@ const routes: Routes = [
         component: AddProductoComponent,
       },
       {
-        path: 'caja',
+        path: 'mi-caja',
         component: CajaAperturaComponent,
       },
       {
@@ -188,11 +189,11 @@ const routes: Routes = [
         component: CajaDetalleComponent,
       },
       {
-        path: 'caja/arqueo',
+        path: 'mi-caja/arqueo',
         component: ArqueoCajaComponent,
       },
       {
-        path: 'caja/arqueo/:id',
+        path: 'mi-caja/arqueo/:id',
         component: ArqueoCajaComponent,
       },
       {
@@ -212,7 +213,7 @@ const routes: Routes = [
         component: AddProductoComponent,
       },
       {
-        path: 'cajas',
+        path: 'listado-cajas',
         component: AdminCajasComponent,
       },
       {
@@ -378,6 +379,9 @@ const routes: Routes = [
       }, {
         path: 'ia',
         component: IaComponent,
+      }, {
+        path: 'auditoria',
+        component: AuditoriaListComponent,
       },
     ],
   },

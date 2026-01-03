@@ -112,6 +112,7 @@ import { ListarPersonalLimpiezaComponent } from './pages/admin/listar-personal-l
 import { RegistrarIncidenciaComponent } from './pages/admin/registrar-incidencias/registrar-incidencias.component';
 import { ListarIncidenciasComponent } from './pages/admin/listar-incidencias/listar-incidencias.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
+import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
 
 @NgModule({
   declarations: [
@@ -189,6 +190,7 @@ import { IaComponent } from './pages/admin/ia/ia.component';
     RegistrarPersonalLimpiezaComponent,
     ListarPersonalLimpiezaComponent,
     IaComponent,
+    AuditoriaListComponent
 
   ],
 

@@ -1,0 +1,115 @@
+<div class="container">
+  
+  <div class="card">
+    <div class="info-trabajadores-linea">
+      <h4>Registro de Auditoría y Seguridad</h4>
+      <button class="btn-agregar" (click)="cargarAuditorias()">
+        <i class="fas fa-sync-alt" style="margin-right: 8px;"></i> Refrescar Datos
+      </button>
+    </div>
+
+    <div class="filtros-container">
+      <div class="filtros-select">
+        
+        <select [(ngModel)]="filtroMetodo">
+          <option value="">Todos los métodos</option>
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+          <option value="PUT">PUT</option>
+          <option value="DELETE">DELETE</option>
+        </select>
+
+        <select [(ngModel)]="filtroEstado">
+          <option value="">Todos los estados</option>
+          <option value="200">200 - Éxito</option>
+          <option value="400">400 - Error Cliente</option>
+          <option value="401">401 - No Autorizado</option>
+          <option value="500">500 - Error Servidor</option>
+        </select>
+
+        <button class="btn-icon secondary" (click)="limpiarFiltros()" title="Limpiar filtros">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+
+      <div class="buscador">
+        <div class="input-wrapper">
+          <input type="text" placeholder="Buscar usuario, IP, ruta..." [(ngModel)]="filtroGeneral" />
+          <button type="button" class="btn-icono">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="loading">Cargando registros...</div>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+    <div class="table-responsive" *ngIf="!loading && !error">
+      <table class="tabla-trabajadores">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Método</th>
+            <th>Ruta (URL)</th>
+            <th>IP Origen</th>
+            <th>Estado</th>
+            <th>Tiempo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let audit of auditoriasPaginadas">
+            
+            <td>{{ audit.fecha | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+            
+            <td style="font-weight: 600; color: #333;">{{ audit.usuario || 'Anónimo' }}</td>
+            
+            <td>
+              <span [ngClass]="{
+                'metodo-get': audit.metodo === 'GET',
+                'metodo-post': audit.metodo === 'POST',
+                'metodo-put': audit.metodo === 'PUT',
+                'metodo-delete': audit.metodo === 'DELETE'
+              }">
+                {{ audit.metodo }}
+              </span>
+            </td>
+
+            <td class="url-cell" title="{{ audit.url }}">{{ audit.url }}</td>
+            <td>{{ audit.ip }}</td>
+
+            <td>
+              <span class="badge" [ngClass]="getEstadoClass(audit.codigoEstado)">
+                {{ audit.codigoEstado }} | {{ getTextoEstado(audit.codigoEstado) }}
+              </span>
+            </td>
+
+            <td style="font-size: 13px; color: #666;">
+               <i class="fas fa-clock"></i> {{ audit.tiempoEjecucion }} ms
+            </td>
+          </tr>
+
+          <tr *ngIf="auditoriasPaginadas.length === 0">
+            <td colspan="7" class="text-center text-muted" style="padding: 20px;">
+              No se encontraron registros.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-controls mt-4 text-center" style="margin-top: 20px;">
+      <button class="btn btn-outline-secondary" [disabled]="currentPage === 1" (click)="changePage(-1)"> 
+         ← Anterior 
+      </button>
+      
+      <span class="mx-3"> Página {{ currentPage }} de {{ totalPages }} </span>
+      
+      <button class="btn btn-outline-secondary" [disabled]="currentPage === totalPages" (click)="changePage(1)"> 
+         Siguiente → 
+      </button>
+    </div>
+
+  </div>
+</div>

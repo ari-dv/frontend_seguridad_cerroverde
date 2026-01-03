@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Conductores {
-  id_conductor?: number;
+  id_conductor?: any;
   nombre: string,
   dni: string;
   placa: string;

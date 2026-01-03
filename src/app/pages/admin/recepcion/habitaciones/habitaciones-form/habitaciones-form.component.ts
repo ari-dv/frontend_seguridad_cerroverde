@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 export class HabitacionesFormComponent implements OnInit {
   habitacionForm!: FormGroup;
   isEditing = false;
-  id?: number;
+  id?: any;
   submitted = false;
   loading = false;
   error = '';
@@ -42,7 +42,7 @@ export class HabitacionesFormComponent implements OnInit {
   ngOnInit(): void {
     this.loadData(); // Esto incluye initForm()
   
-    this.id = +this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['id'];
     this.isEditing = !!this.id;
   
     // Espera a que el formulario esté listo antes de cargar los datos de edición
@@ -177,11 +177,19 @@ export class HabitacionesFormComponent implements OnInit {
 
       },
       error: (err) => {
-        this.error = 'Error al cargar el recojo';
+        this.error="Error al cargar la habitación"
         this.loading = false;
-        console.error('Error:', err);
+      
+        Swal.fire({
+          icon: 'error',
+          title: 'Acceso Denegado',
+          text: 'La habitación no existe o el enlace es inválido.',
+          confirmButtonText: 'Volver a la lista'
+        }).then(() => {
+          this.router.navigate(['/admin/habitaciones']);
+        });
       }
-      });
+    });
       
 
   }

@@ -6,7 +6,6 @@ import { HabitacionesFormComponent } from './habitaciones-form.component';
 import { HabitacionesService } from '../../../../../service/habitaciones.service';
 import { TipoHabitacionService } from '../../../../../service/tipo-habitacion.service';
 import { SucursalService } from '../../../../../service/sucursal.service';
-import { ImagenesService } from '../../../../../service/imagen.service';
 
 describe('HabitacionesFormComponent', () => {
   let component: HabitacionesFormComponent;

@@ -12,7 +12,7 @@ export interface Sucursal {
 }
 
 export interface Habitacion {
-  id_habitacion?: number;
+  id_habitacion?: any;
   numero: number;
   piso: Pisos;
   estado_habitacion: string;

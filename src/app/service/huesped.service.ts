@@ -5,7 +5,7 @@ import { HabitacionReserva } from './habitaciones.service';
 import { Cliente } from './clientes.service';
 
 export interface Huespedes {
-  idHuesped?: number;
+  idHuesped?: any;
   habres: HabitacionReserva;
   cliente: Cliente;
   estado: number;

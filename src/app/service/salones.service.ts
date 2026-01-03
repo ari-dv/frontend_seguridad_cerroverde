@@ -8,13 +8,8 @@ export interface Sucursal {
   nombre: string;
 }
 
-export interface Imagen {
-  id_imagen?: number;
-  nombre: string;
-}
-
 export interface Salones {
-  id_salon?: number;
+  id_salon?: any;
   nombre: string;
   estado_salon: string;
   estado: number;
@@ -25,7 +20,7 @@ export interface Salones {
 }
 
 export interface SalonReserva {
-  id_salon_reserv?: number;
+  id_salon_reserv?: any;
   salon: Salones;
   reserva: Reserva;
   estado: number;
