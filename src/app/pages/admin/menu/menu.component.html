@@ -1,67 +1,57 @@
 <div class="container">
-<mat-card class="sidebar-card p-3">
-  <mat-card-header class="sidebar-header">
-    <div class="logo-container d-flex justify-content-center flex-column align-items-center">
-      <!-- Logo visible solo en pantallas grandes -->
-      <img src="../../../../assets/logo-cerroverde.svg" alt="Logo" class="logo-img" />
-
-      <!-- Texto que aparece en responsive -->
-      <h5 class="logo-text-responsive">Hotel Cerro Verde</h5>
+  <mat-card class="sidebar-card">
+    
+    <div class="sidebar-header">
+      <div class="logo-container d-flex flex-column align-items-center">
+        <img src="../../../../assets/logo-cerroverde.svg" alt="Logo" class="logo-img" />
+        <h5 class="logo-text-responsive">HCV</h5>
+      </div>
     </div>
-  </mat-card-header>
 
-  <mat-card-content class="sidebar-content">
-    <mat-action-list>
+    <div class="menu-body">
+      <mat-action-list>
 
-      <!-- INICIO -->
-      <button
-        mat-list-item
-        routerLink="/admin/dashboard-inicio"
-        routerLinkActive="active"
-        class="nav-button d-flex align-items-center w-100"
-      >
-        <mat-icon mat-list-icon>dashboard</mat-icon>
-        <span class="capitalize-first inicio">Inicio</span>
-      </button>
-
-      <!-- MÓDULOS -->
-      <mat-accordion>
-        <mat-expansion-panel
-          *ngFor="let modulo of modulos"
-          class="modulo-panel"
-        >
-          <mat-expansion-panel-header>
-            <div class="modulo-header d-flex align-items-center gap-2">
-              <mat-icon mat-list-icon>{{ modulo.icon }}</mat-icon>
-              <span class="nombre_modulo">{{ modulo.nombre }}</span>
-            </div>
-          </mat-expansion-panel-header>
-
-          <div class="submodulo-buttons">
-            <button
-              *ngFor="let permiso of modulo.permisos"
-              mat-list-item
-              routerLink="/admin/{{ permiso.nombrePermiso | lowercase | replaceSpaces }}"
-              class="nav-button submodulo-nav-button d-flex align-items-center w-100"
-            >
-              <mat-icon mat-list-icon>{{ permiso.icon }}</mat-icon>
-              <span class="capitalize-first">{{ permiso.nombrePermiso }}</span>
-            </button>
+        <button mat-list-item routerLink="/admin/dashboard-inicio" routerLinkActive="active" class="nav-button">
+          <div class="d-flex align-items-center">
+             <mat-icon>dashboard</mat-icon>
+             <span class="capitalize-first">Inicio</span>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
+        </button>
 
-      <!-- SALIR -->
-      <button
-        mat-list-item
-        (click)="cerrar()"
-        class="nav-button logout d-flex align-items-center w-100 mt-3"
-      >
-        <mat-icon mat-list-icon>logout</mat-icon>
-        <span class="inicio">Salir</span>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let modulo of modulos">
+            <mat-expansion-panel-header>
+              <div class="modulo-header">
+                <mat-icon>{{ modulo.icon }}</mat-icon>
+                <span class="nombre_modulo">{{ modulo.nombre }}</span>
+              </div>
+            </mat-expansion-panel-header>
+
+            <div class="submodulo-buttons">
+              <button *ngFor="let permiso of modulo.permisos" 
+                      mat-list-item 
+                      routerLink="/admin/{{ permiso.nombrePermiso | lowercase | replaceSpaces }}"
+                      class="nav-button submodulo-nav-button">
+                <div class="d-flex align-items-center">
+                  <mat-icon style="font-size: 18px;">circle</mat-icon> 
+                  <span class="capitalize-first">{{ permiso.nombrePermiso }}</span>
+                </div>
+              </button>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </mat-action-list>
+    </div>
+
+    <div class="sidebar-footer">
+      <button mat-list-item (click)="cerrar()" class="nav-button logout">
+        <div class="d-flex align-items-center">
+           <mat-icon>logout</mat-icon>
+           <span class="capitalize-first">Salir</span>
+        </div>
       </button>
+    </div>
 
-    </mat-action-list>
-  </mat-card-content>
-</mat-card>
+  </mat-card>
 </div>
