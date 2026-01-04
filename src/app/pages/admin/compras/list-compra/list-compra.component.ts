@@ -4,7 +4,7 @@ import { ComprasService } from '../../../../service/compras.service';
 import { ProductosService } from '../../../../service/productos.service';
 import { ProveedoresService } from '../../../../service/proveedores.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DetalleComprasService } from '../../../../service/detalle-compras.service';
 
 @Component({

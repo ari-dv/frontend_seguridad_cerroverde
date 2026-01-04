@@ -43,8 +43,8 @@
 <!-- Usuario -->
 <div class="user-box d-flex align-items-center gap-2 px-3 py-2 ms-3 position-relative" (click)="toggleDropdown()">
   <div class="user-info">
-    <div class="user-name">{{ user?.username }}</div>
-    <div class="user-role">Administrador</div>
+    <div class="user-name">{{ user?.nombre  }} {{ user?.apellidos  }}</div>
+<div class="user-role">{{ user?.rol?.nombreRol }}</div>
   </div>
   <img [src]="user?.perfil" alt="{{ user?.username }}" class="user-image" />
 <!-- Dropdown -->

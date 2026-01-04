@@ -15,6 +15,15 @@ export class LoginService {
     return this.httpClient.post(`${baseUrl}/generar-token`, loginData);
   }
 
+  // Paso 1: Login y enviar código
+  loginEnviarCodigo(loginData: any): Observable<any> {
+    return this.httpClient.post(`${baseUrl}/login`, loginData);
+  }
+  // Paso 2: Validar código
+  validarCodigoDobleFactor(data: { correo: string; codigo: string }): Observable<any> {
+    return this.httpClient.post(`${baseUrl}/validar-codigo`, data);
+  }
+
   public loginUser(token:any){
     localStorage.setItem('token', token);
   }
@@ -69,9 +78,13 @@ export class LoginService {
 
 
 
-  public getCurrentUser(){
-    return this.httpClient.get(`${baseUrl}/usuario-actual`);
-  }
+public getCurrentUser() {
+  const token = this.getToken(); // Obtenemos el token guardado
+  return this.httpClient.get(`${baseUrl}/usuario-actual`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
+
   enviarEmail(email: string): Observable<any> {
     return this.httpClient.post(`${baseUrl}/enviar-link-recuperacion`, { email }, { responseType: 'text' });
   }

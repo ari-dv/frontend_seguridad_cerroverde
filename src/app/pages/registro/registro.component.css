@@ -1,0 +1,284 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+/* ===== REGISTRO LOGIN CARD ===== */
+.login-container {
+  width: 45%;
+  min-width: 410px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f3fbf8, #eaf7f2);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+/* ===== FONDO BOLITAS MINIMAL ===== */
+.login-container .bg-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.login-container .bg-dots span {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(79, 193, 172, 0.18);
+  animation: floatSoft 6s ease-in-out infinite;
+}
+
+.login-container .bg-dots span:nth-child(1) {
+  top: -60px;
+  left: -60px;
+}
+
+.login-container .bg-dots span:nth-child(2) {
+  bottom: -80px;
+  right: -80px;
+  animation-delay: 1.5s;
+}
+
+@keyframes floatSoft {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0); }
+}
+
+/* Mat-card sobre el fondo */
+.login-container mat-card {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border-radius: 18px;
+  padding: 30px 25px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Burbujas decorativas */
+.login-container::before,
+.login-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.login-container::before {
+  width: 180px;
+  height: 180px;
+  background: rgba(79, 193, 172, 0.2);
+  top: -60px;
+  left: -60px;
+}
+
+.login-container::after {
+  width: 250px;
+  height: 250px;
+  background: rgba(79, 193, 172, 0.15);
+  bottom: -100px;
+  right: -100px;
+}
+
+/* ===== CARD ===== */
+mat-card {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 18px !important;
+  padding: 30px 25px !important;
+  z-index: 1;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* ===== HEADER ===== */
+mat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px !important;
+  padding: 0 !important;
+  flex-direction: column;
+}
+
+mat-card-header img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+mat-card-header p {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0a7c74;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* ===== FORM ===== */
+.full-width {
+  width: 100%;
+}
+
+.mat-form-field {
+  margin-bottom: 16px;
+  background: #f0fdf7;
+  border-radius: 12px;
+  padding: 0 8px;
+}
+
+/* ===== INPUTS EN FILA ===== */
+.row-inputs {
+  display: flex;
+  gap: 15px;
+}
+
+.row-inputs .mat-form-field {
+  flex: 1;
+}
+
+/* ===== BOTONES PASSWORD ALINEADOS ===== */
+.password-actions {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+/* ===== ICONOS ===== */
+mat-icon {
+  color: #0a7c74;
+}
+
+/* ===== BOTON ===== */
+button[mat-raised-button] {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #34a853, #81c995);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(50, 168, 133, 0.35);
+  transition: all 0.25s ease;
+}
+
+button[mat-raised-button]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(50, 168, 133, 0.45);
+  background: linear-gradient(135deg, #2e7d5e, #6fcbb0);
+}
+
+button[mat-raised-button]:active {
+  transform: scale(0.97);
+}
+
+/* ===== ERROR ===== */
+.error-message {
+  color: #e53935;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* ===== LINK ===== */
+.text-center {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.text-center a {
+  color: #0a7c74;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.text-center a:hover {
+  text-decoration: underline;
+}
+
+/* ===== IMAGEN LATERAL ===== */
+.cont-img {
+  width: 55%;
+  height: 100%;
+}
+
+.cont-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-left: 2px solid rgba(0,0,0,0.05);
+  filter: brightness(0.95);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .login-container {
+    width: 90%;
+    min-width: unset;
+    margin: 20px auto;
+  }
+
+  .cont-img {
+    display: none;
+  }
+
+  .row-inputs {
+    flex-direction: column;
+  }
+}
+
+/* Modal de términos y condiciones */
+.modal-terminos {
+  position: absolute; /* dentro del contenedor principal */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 80%; /* para limitar el tamaño del modal */
+  text-align: center;
+  box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-body {
+  overflow-y: auto; /* permite scroll si el contenido excede el alto */
+  text-align: justify;
+  margin-bottom: 20px;
+  padding-right: 10px; /* evita que el scroll tape el texto */
+}

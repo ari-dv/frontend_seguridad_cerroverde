@@ -7,7 +7,6 @@ import {
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -38,18 +37,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card'; // ✅ Importar MatCardModule
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatError } from '@angular/material/form-field';
-import { MatLabel } from '@angular/material/form-field';
-import { MatCard } from '@angular/material/card';
-
 import { AddRolComponent } from './pages/admin/roles/add-rol/add-rol.component';
 import { ActualizarRolComponent } from './pages/admin/roles/actualizar-rol/actualizar-rol.component';
-import { ConfirmarPasswordComponent } from './pages/confirmar-password/confirmar-password.component';
 import { EnviarCorreoComponent } from './pages/enviar-correo/enviar-correo.component';
-import { ReplaceSpacesPipe } from './pipes/replace-spaces.pipe';
 import { AddProveedorComponent } from './pages/admin/proveedores/add-proveedor/add-proveedor.component';
 import { ListProveedorComponent } from './pages/admin/proveedores/list-proveedor/list-proveedor.component';
-
 import { ListCategoriasComponent } from './pages/admin/categorias/list-categorias/list-categorias.component';
 import { AddCategoriasComponent } from './pages/admin/categorias/add-categorias/add-categorias.component';
 import { CajaAperturaComponent } from './pages/admin/caja-apertura/caja-apertura.component';
@@ -92,6 +84,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ReportesComprasComponent } from './pages/admin/reportes/reportes-compras/reportes-compras.component';
 import { ConsultaVentasComponent } from './pages/admin/reportes/consulta-ventas/consulta-ventas.component';
 import { NgChartsModule } from 'ng2-charts';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { MatTab, MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 // import { ListarIncidenciasComponent } from './pages/admin/listar-incidencias/listar-incidencias.component';
 // import { RegistrarIncidenciaComponent } from './pages/admin/registrar-incidencias/registrar-incidencias.component';
@@ -113,11 +107,16 @@ import { RegistrarIncidenciaComponent } from './pages/admin/registrar-incidencia
 import { ListarIncidenciasComponent } from './pages/admin/listar-incidencias/listar-incidencias.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
 import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { ConfirmarPasswordComponent } from './pages/confirmar-password/confirmar-password.component';
+import { ReplaceSpacesPipe } from './pipes/replace-spaces.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegistroComponent,
     MenuComponent,
     DashboardComponent,
     WelcomeComponent,
@@ -195,44 +194,36 @@ import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-l
   ],
 
   imports: [
-    BrowserModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
-    MatAutocompleteModule,
-    MatToolbarModule,
-    MatDatepickerModule,
-    MatSelectModule,
-    MatSlideToggleModule,
+   BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    MatDialogModule,
-    NgSelectModule,
-    MatListModule,
-    MatExpansionModule,
-    MatNativeDateModule,
+    MatSelectModule,
     FormsModule,
+        ReplaceSpacesPipe,
+    ReactiveFormsModule,
+    HttpClientModule,  // ✅ Solo una vez y desde @angular/common/http
+    MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatSnackBarModule,
-    MatFormFieldModule,
     MatIconModule,
-    MatFormFieldModule,
-    ReplaceSpacesPipe,
-    MatError,
-    MatLabel,
-    MatCard,
-    MatDividerModule,
-    MatPaginatorModule,
-    MatSortModule,
-    ReplaceSpacesPipe,
-    NgChartsModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatDialogModule,
+    MatListModule,
+    MatExpansionModule,
     MatTableModule,
-    MatTab,
-    MatTabGroup,
-    ReactiveFormsModule
+    MatSortModule,
+    MatPaginatorModule,
+    MatDividerModule,
+    MatTabsModule,
+    NgSelectModule,
+    NgChartsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

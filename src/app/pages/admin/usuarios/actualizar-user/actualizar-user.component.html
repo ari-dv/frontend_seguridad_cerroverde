@@ -83,14 +83,15 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+<mat-form-field class="half-width" appearance="outline" *ngIf="user">
+  <mat-label>Estado</mat-label>
+  <mat-select name="estado" [(ngModel)]="user.enable">
+    <mat-option [value]="'true'">Activo</mat-option>
+    <mat-option [value]="'false'">Inactivo</mat-option>
+  </mat-select>
+</mat-form-field>
 
-              <mat-form-field class="half-width" appearance="outline">
-                <mat-label>Estado</mat-label>
-                <mat-select name="estado" [(ngModel)]="user.enable" required>
-                  <mat-option [value]="true">Activo</mat-option>
-                  <mat-option [value]="false">Inactivo</mat-option>
-                </mat-select>
-              </mat-form-field>
+
 
 
             <div class="form-image-upload">
@@ -105,7 +106,7 @@
 
             <div class="form-actions">
               <button mat-raised-button color="primary" class="btn-primary">
-                Registrar
+                Actualizar
               </button>
               <button
                 mat-raised-button

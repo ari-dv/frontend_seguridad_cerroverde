@@ -65,6 +65,7 @@ import { ListarLimpiezaComponent } from './pages/admin/listar-limpiezas/listar-l
 import { ListarPersonalLimpiezaComponent } from './pages/admin/listar-personal-limpieza/listar-personal-limpieza.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
 import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 const routes: Routes = [
   {
@@ -78,7 +79,13 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'enviar-correo',
+    path: 'registro',
+    component:RegistroComponent,
+    pathMatch: 'full',
+
+  },
+  {
+    path: 'recuperar-contraseña',
     component: EnviarCorreoComponent,
     pathMatch: 'full',
   },

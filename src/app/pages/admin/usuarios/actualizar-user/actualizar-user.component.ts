@@ -30,7 +30,7 @@ export class ActualizarUserComponent implements OnInit {
             email: '',
             telefono: '',
             perfil: '',
-            enable: true,
+  enable: true as boolean | string, // <-- permitir string temporalmente
             rol: {
               id: 0,
               nombreRol: '',
@@ -75,20 +75,20 @@ export class ActualizarUserComponent implements OnInit {
                 Swal.fire('Error !!', 'Al cargar el listado de los roles', 'error');
               }
             );
+this.userService.obtenerUsuario(this.idUser).subscribe(
+  (data: any) => {
+    this.user = data;
 
-                  // Luego de tener módulos cargados, obtenemos al usuario
-                  this.userService.obtenerUsuario(this.idUser).subscribe(
-                    (data: any) => {
-                      this.user = data;
-                      this.rolSeleccionado = this.user.rol?.id ?? null;
+    // Convertir enable a string para el select
+    this.user.enable = this.user.enable ? 'true' : 'false';
 
-
-                    },
-                    (error) => {
-                      console.log(error);
-                      this.snack.open('Error al cargar los datos del usuario', 'Cerrar', { duration: 3000 });
-                    }
-                  );
+    this.rolSeleccionado = this.user.rol?.id ?? null;
+  },
+  (error) => {
+    console.log(error);
+    this.snack.open('Error al cargar los datos del usuario', 'Cerrar', { duration: 3000 });
+  }
+);
 
                 }
 
@@ -114,73 +114,75 @@ export class ActualizarUserComponent implements OnInit {
             modulo.submodulos.forEach((sub: any) => {
               sub.seleccionado = modulo.seleccionado;
             });}
+formSubmit() {
+  // 1️⃣ Verifica si el rol seleccionado no es válido
+  if (!this.rolSeleccionado) {
+    this.snack.open('Debe seleccionar un rol', 'Aceptar', {
+      duration: 3000,
+    });
+    return;
+  }
 
-          formSubmit() {
-            // Verifica si el rol seleccionado no es válido
-            if (!this.rolSeleccionado) {
-              this.snack.open('Debe seleccionar un rol', 'Aceptar', {
-                duration: 3000,
-              });
-              return;
-            }
+  // 2️⃣ Asegúrate de que el rol seleccionado es el correcto
+  const selectedRole = this.roles.find((role: any) => role.id === this.rolSeleccionado);
 
-            // Asegúrate de que el rol seleccionado es el correcto
-            const selectedRole = this.roles.find((role: any) => role.id === this.rolSeleccionado);
+  if (selectedRole) {
+    this.user.rol.id = this.rolSeleccionado;
+    this.user.rol.nombreRol = selectedRole.nombreRol;
+    this.user.rol.descripcion = selectedRole.descripcion;
+    this.user.rol.rolesPermisos = [];
+  }
 
-            if (selectedRole) {
-              this.user.rol.id = this.rolSeleccionado;
-              this.user.rol.nombreRol = selectedRole.nombreRol;
-              this.user.rol.descripcion = selectedRole.descripcion;
-              this.user.rol.rolesPermisos = [];
+  // 3️⃣ Convertimos el estado a boolean antes de enviar
+  // user.enable viene del select como 'true' o 'false' (string)
+  this.user.enable = this.user.enable === 'true';
 
+  console.log('Usuario con permisos:', this.user); // Verifica el objeto `user`
 
+  // 4️⃣ Enviar datos al backend
+  this.userService.editarUsuario(this.user).subscribe(
+    (data) => {
+      Swal.fire('Usuario guardado', 'Usuario actualizado con éxito', 'success');
+      this.router.navigate(['/admin/usuarios']);
+    },
+    (error) => {
+      if (error.status === 409) {
+        const mensaje = error.error;
 
-            }
+        if (mensaje.includes('correo') || mensaje.includes('Correo')) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Correo ya registrado',
+            text: 'El correo electrónico ya está registrado, por favor intente con otro.',
+            confirmButtonText: 'Aceptar'
+          });
+        } else if (mensaje.includes('usuario') || mensaje.includes('Usuario')) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Usuario ya registrado',
+            text: 'El nombre de usuario ya está en uso, por favor elija otro.',
+            confirmButtonText: 'Aceptar'
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Conflicto',
+            text: mensaje,
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en el sistema',
+          text: 'Ha ocurrido un error en el sistema, por favor intente nuevamente.',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+      console.error(error);
+    }
+  );
+}
 
-            console.log('Usuario con permisos:', this.user); // Verifica el objeto `user` con los permisos agregados
-            this.userService.editarUsuario(this.user).subscribe(
-              (data) => {
-                Swal.fire('Usuario guardado', 'Usuario registrado con éxito', 'success');
-                this.router.navigate(['/admin/usuarios']);
-              },
-              (error) => {
-                if (error.status === 409) {
-                  const mensaje = error.error;
-
-                  if (mensaje.includes('correo') || mensaje.includes('Correo')) {
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Correo ya registrado',
-                      text: 'El correo electrónico ya está registrado, por favor intente con otro.',
-                      confirmButtonText: 'Aceptar'
-                    });
-                  } else if (mensaje.includes('usuario') || mensaje.includes('Usuario')) {
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Usuario ya registrado',
-                      text: 'El nombre de usuario ya está en uso, por favor elija otro.',
-                      confirmButtonText: 'Aceptar'
-                    });
-                  } else {
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Conflicto',
-                      text: mensaje,
-                      confirmButtonText: 'Aceptar'
-                    });
-                  }
-                }
-                 else {
-                  Swal.fire({
-                    icon: 'error',
-                    title: 'Error en el sistema',
-                    text: 'Ha ocurrido un error en el sistema, por favor intente nuevamente.',
-                    confirmButtonText: 'Aceptar'
-                  });
-                }
-                console.error(error);
-              }
-            );
-          }
 
         }

@@ -1,0 +1,181 @@
+<div class="main-container">
+
+  <div class="login-container">
+    <!-- Fondo de bolitas -->
+    <div class="bg-dots">
+      <span></span>
+      <span></span>
+    </div>
+
+    <mat-card>
+      <mat-card-header>
+        <img src="assets/logo.png" alt="Logo" />
+        <p>Registro de usuario</p>
+      </mat-card-header>
+
+      <mat-card-content>
+
+   
+
+        <form (ngSubmit)="formSubmit()" #form="ngForm">
+
+          <!-- DNI y Nombres -->
+          <div class="row-inputs">
+            <mat-form-field appearance="outline">
+              <mat-label>DNI</mat-label>
+              <input matInput name="dni"
+                     [(ngModel)]="registerData.dni"
+                     required
+                     maxlength="8"
+
+                     placeholder="Ingrese su DNI"
+                     (keydown)="buscarPorDni($event)" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Nombres</mat-label>
+              <input matInput name="nombres"
+                     [(ngModel)]="registerData.nombres"
+                     required
+                     readonly 
+         placeholder="Campo autocompletado"
+                      />
+            </mat-form-field>
+          </div>
+
+          <!-- Apellidos y Teléfono -->
+          <div class="row-inputs">
+            <mat-form-field appearance="outline">
+              <mat-label>Apellidos</mat-label>
+              <input matInput name="apellidos"
+                     [(ngModel)]="registerData.apellidos"
+                     required
+                     readonly 
+         placeholder="Campo autocompletado"
+                     />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono</mat-label>
+              <input matInput name="telefono"
+                     [(ngModel)]="registerData.telefono"
+                     required
+                     maxlength="9"
+                     placeholder="Ingrese su teléfono" />
+            </mat-form-field>
+          </div>
+
+          <!-- Correo electrónico -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput type="email"
+                   name="email"
+                   [(ngModel)]="registerData.email"
+                   required
+                   placeholder="Ingrese su correo" />
+          </mat-form-field>
+
+          <!-- Contraseña y Confirmar contraseña -->
+          <div class="row-inputs">
+            <!-- Contraseña -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contraseña</mat-label>
+              <input matInput name="password"
+                     [(ngModel)]="registerData.password"
+                     required 
+                     [type]="hide ? 'password' : 'text'"
+                     placeholder="Ingrese su contraseña" />
+
+              <span matSuffix class="password-actions">
+                <button mat-icon-button type="button" (click)="hide = !hide" aria-label="Mostrar/Ocultar">
+                  <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+                <button mat-icon-button type="button" (click)="generarPassword()" title="Generar contraseña" aria-label="Generar">
+                  <mat-icon>autorenew</mat-icon>
+                </button>
+              </span>
+            </mat-form-field>
+
+            <!-- Confirmar contraseña -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Confirmar contraseña</mat-label>
+              <input matInput type="password"
+                     name="confirmPassword"
+                     [(ngModel)]="registerData.confirmPassword"
+                     required
+                     placeholder="Repita su contraseña" />
+            </mat-form-field>
+          </div>
+
+          <!-- Términos y condiciones -->
+          <mat-checkbox name="terminos" [(ngModel)]="registerData.check_terminos" required>
+            Acepto los términos y condiciones 
+            <span class="text-primary" style="cursor:pointer; text-decoration: underline;" (click)="abrirModalTerminos()">
+              ver más
+            </span>
+          </mat-checkbox>
+               <div *ngIf="mensajeError" class="error-message">
+          {{ mensajeError }}
+        </div>
+          <!-- Botón de registro -->
+          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+            Registrarse
+          </button>
+          
+
+          <!-- Link a login -->
+          <p class="text-center">
+            ¿Ya tienes cuenta?
+            <a routerLink="/login">Inicia sesión</a>
+          </p>
+
+        </form>
+             <!-- Mensaje de error -->
+   
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Imagen lateral -->
+  <div class="cont-img">
+    <img src="assets/habitaciones.jpg" alt="Habitación" />
+  </div>
+
+</div>
+
+<!-- Modal de términos y condiciones -->
+<div class="modal-terminos" *ngIf="mostrarModalTerminos">
+  <div class="modal-content">
+    <h3>Términos y Condiciones</h3>
+    <div class="modal-body">
+      <p>
+        Bienvenido a nuestro hotel. Al utilizar nuestros servicios y realizar reservas, usted acepta cumplir con los siguientes términos y condiciones:
+      </p>
+      <p>
+        1. <strong>Reservas:</strong> Todas las reservas están sujetas a disponibilidad. El hotel se reserva el derecho de cancelar reservas en caso de información falsa o pago no confirmado.
+      </p>
+      <p>
+        2. <strong>Check-in y Check-out:</strong> El horario de check-in es a partir de las 14:00 hrs y el check-out antes de las 12:00 hrs. Solicitudes especiales estarán sujetas a disponibilidad.
+      </p>
+      <p>
+        3. <strong>Pagos y Cancelaciones:</strong> Se requiere tarjeta de crédito válida para garantizar la reserva. Las políticas de cancelación varían según el tipo de tarifa; las tarifas no reembolsables no permiten devoluciones.
+      </p>
+      <p>
+        4. <strong>Uso de instalaciones:</strong> Los huéspedes son responsables de utilizar las instalaciones del hotel de manera adecuada. Cualquier daño será cargado al huésped.
+      </p>
+      <p>
+        5. <strong>Política de privacidad:</strong> Toda la información personal proporcionada será utilizada únicamente para la gestión de reservas y conforme a la Ley de Protección de Datos Personales.
+      </p>
+      <p>
+        6. <strong>Seguridad:</strong> El hotel no se hace responsable de objetos de valor no entregados en la caja fuerte de la habitación.
+      </p>
+      <p>
+        7. <strong>Normas de conducta:</strong> Se prohíbe fumar en habitaciones y áreas cerradas. Cualquier comportamiento que afecte la tranquilidad de otros huéspedes puede derivar en la cancelación de la estancia.
+      </p>
+      <p>
+        8. <strong>Modificaciones:</strong> El hotel se reserva el derecho de actualizar estos términos en cualquier momento. Las modificaciones serán efectivas desde su publicación en nuestra plataforma.
+      </p>
+    </div>
+    <button mat-raised-button color="accent" (click)="cerrarModalTerminos()">Cerrar</button>
+  </div>
+</div>
