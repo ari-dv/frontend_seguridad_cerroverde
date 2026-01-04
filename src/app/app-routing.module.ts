@@ -65,11 +65,8 @@ import { ListarLimpiezaComponent } from './pages/admin/listar-limpiezas/listar-l
 import { ListarPersonalLimpiezaComponent } from './pages/admin/listar-personal-limpieza/listar-personal-limpieza.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
 import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
-<<<<<<< HEAD
 import { RegistroComponent } from './pages/registro/registro.component';
-=======
 import { PdfFirmaComponent } from './pages/admin/pdf-firma/pdf-firma.component';
->>>>>>> c1c37a5acbed0b74ed53972c2ef52d827c22270a
 
 const routes: Routes = [
   {
