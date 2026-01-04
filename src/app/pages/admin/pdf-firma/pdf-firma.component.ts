@@ -63,7 +63,7 @@ export class PdfFirmaComponent {
       },
       error: () => {
         this.cargando = false;
-        Swal.fire('Error', 'No se pudo firmar el archivo', 'error');
+        Swal.fire('Error', 'El documento supera el limite de MB', 'error');
       }
     });
   }
