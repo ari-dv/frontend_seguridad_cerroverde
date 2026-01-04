@@ -1,0 +1,73 @@
+<div class="container">
+  <app-header></app-header>
+
+  <div class="card">
+    <div class="info-categorias-linea">
+      <h5>Firma de Documentos PDF</h5>
+    </div>
+
+    <div class="firma-box">
+      <div 
+        class="upload-area" 
+        (click)="fileInput.click()"
+        (dragover)="$event.preventDefault()"
+        (drop)="onFileDropped($event)"
+      >
+        <input #fileInput type="file" accept="application/pdf" (change)="onFileSelected($any($event))" hidden />
+        
+        <div class="upload-content">
+          <div class="icon-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+            </svg>
+          </div>
+          <p class="main-text">Arrastra archivos PDF aquí</p>
+          <p class="sub-text">o haz clic para seleccionar (máx. 1MB)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="historial-container" *ngIf="documentosRecientes.length > 0">
+      <h6 class="historial-title">Documentos Recientes</h6>
+      
+      <div class="document-list">
+        <div class="document-item" *ngFor="let doc of documentosRecientes">
+          <div class="doc-info-wrapper">
+            <div class="doc-icon-bg" [ngClass]="doc.estado === 'Firmado' ? 'bg-success-light' : 'bg-primary-light'">
+              <i *ngIf="doc.estado !== 'Firmado'">📄</i>
+              <i *ngIf="doc.estado === 'Firmado'">🛡️</i>
+            </div>
+            
+            <div class="doc-details">
+              <span class="doc-name">{{ doc.nombre }}</span>
+              <span class="doc-time">🕒 hace unos instantes</span>
+            </div>
+          </div>
+
+          <div class="doc-actions">
+  <span class="status-badge" [ngClass]="doc.estado === 'Firmado' ? 'status-firmado' : 'status-pendiente'">
+    {{ doc.estado }}
+  </span>
+
+        <div class="action-icons">
+            
+            <button 
+            *ngIf="doc.estado === 'Pendiente'" 
+            class="btn-icon color-firmar" 
+            title="Firmar Documento"
+            (click)="firmarDocumentoDelHistorial(doc)"
+            >
+            📝
+            </button>
+
+            <button class="btn-icon" title="Descargar" (click)="descargarArchivo(doc)">
+            ⬇️
+            </button>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

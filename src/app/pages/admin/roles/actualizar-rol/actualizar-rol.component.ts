@@ -13,11 +13,12 @@ import { ModulosService } from '../../../../service/modulos.service';
 })
 export class ActualizarRolComponent implements OnInit {
   modulos: any[] = [];
-  id_rol = 0;
+  
+  // CORRECCIÓN 1: Sintaxis correcta para definir el tipo
+  id_rol: any; 
 
   rol: any;
   permiso: any;
-
 
   constructor(
     private router: ActivatedRoute,
@@ -70,12 +71,17 @@ export class ActualizarRolComponent implements OnInit {
 
   private marcarPermisosAsignados(): void {
     if (!this.rol || !this.rol.rolesPermisos || !this.modulos) return;
+    
     for (const modulo of this.modulos) {
       let moduloSeleccionado = false;
       for (const permiso of modulo.permisos) {
+        
+        // CORRECCIÓN 2: Usar String() para comparar Hash IDs
+        // Number() daría NaN con IDs encriptados
         const estaAsignado = this.rol.rolesPermisos.some(
-          (rp: any) => Number(rp.permisos?.id) === Number(permiso.id)
+          (rp: any) => String(rp.permisos?.id) === String(permiso.id)
         );
+        
         permiso.seleccionado = estaAsignado;
         if (estaAsignado) {
           moduloSeleccionado = true;
@@ -99,6 +105,7 @@ export class ActualizarRolComponent implements OnInit {
   public cancelar(): void {
     this.routerEnlace.navigate(['/admin/roles']);
   }
+
   actualizarRol() {
     // Limpiar y construir nueva lista de permisos
     this.rol.rolesPermisos = [];
@@ -125,5 +132,4 @@ export class ActualizarRolComponent implements OnInit {
       }
     );
   }
-
 }

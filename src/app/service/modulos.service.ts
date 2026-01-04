@@ -15,37 +15,35 @@ export class ModulosService {
     return this.http.get(`${baseUrl}/modulos/`);
   }
 
-  // Obtener un módulo por ID
-  public obtenerModuloPorId(id: number): Observable<any> {
+  // CAMBIO: de number a any
+  public obtenerModuloPorId(id: any): Observable<any> {
     return this.http.get(`${baseUrl}/modulos/${id}`);
   }
 
-  // Crear un nuevo módulo
   public agregarModulo(modulo: any): Observable<any> {
     return this.http.post(`${baseUrl}/modulos/`, modulo);
   }
 
-  // Editar un módulo existente
-  public editarModulo(id: number, modulo: any): Observable<any> {
+  // CAMBIO: de number a any
+  public editarModulo(id: any, modulo: any): Observable<any> {
     return this.http.put(`${baseUrl}/modulos/${id}`, modulo);
   }
 
-  // Eliminar un módulo por ID
-  public eliminarModulo(id: number): Observable<any> {
+  // CAMBIO: de number a any
+  public eliminarModulo(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/modulos/${id}`);
   }
 
-  // Obtener permisos por ID de módulo
-  public obtenerPermisosPorModulo(idModulo: number): Observable<any> {
+  // CAMBIO: de number a any
+  public obtenerPermisosPorModulo(idModulo: any): Observable<any> {
     return this.http.get(`${baseUrl}/modulos/${idModulo}/permisos`);
   }
 
-  // Obtener submódulos por ID de módulo
-  public obtenerSubmodulosPorModulo(idModulo: number): Observable<any> {
+  // CAMBIO: de number a any
+  public obtenerSubmodulosPorModulo(idModulo: any): Observable<any> {
     return this.http.get(`${baseUrl}/submodulos/modulos/${idModulo}`);
   }
 
-  // (Opcional) Obtener todos los submódulos
   public obtenerTodos(): Observable<any> {
     return this.http.get(`${baseUrl}/submodulos/`);
   }

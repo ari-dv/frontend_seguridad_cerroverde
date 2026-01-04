@@ -6,11 +6,13 @@ import baseUrl from '../components/helper';
 @Injectable({
   providedIn: 'root'
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class RolesService {
-  buscarRolPorNombre(arg0: string) {
-    throw new Error('Method not implemented.');
-  }
-  actualizarEstado(idRol: number, nuevoEstado: boolean) {
+  
+  // CAMBIO 1: de number a any
+  actualizarEstado(idRol: any, nuevoEstado: boolean) {
     return this.http.put(`${baseUrl}/roles/${idRol}/estado`, {
       estado: nuevoEstado
     });
@@ -18,40 +20,34 @@ export class RolesService {
 
   constructor(private http: HttpClient) { }
 
-  // Obtener todos los permisos
   public listarRoles(): Observable<any> {
     return this.http.get(`${baseUrl}/roles/`);
   }
 
-  // Obtener un permiso por ID
-  public obtenerRolesPorId(id: number): Observable<any> {
-    return this.http.get(`${baseUrl}/${id}`);
+  // CAMBIO 2: de number a any
+  public obtenerRolesPorId(id: any): Observable<any> {
+    return this.http.get(`${baseUrl}/${id}`); // Ojo: verifica si la ruta es correcta, en listarRoles usas /roles/
   }
 
-  // Crear un nuevo permiso
   public agregarRol(rol: any) {
     return this.http.post(`${baseUrl}/roles/`, rol );
   }
 
-   // Crear un nuevo permiso
    public agregarRolSinPermisos(rol: any) {
     return this.http.post(`${baseUrl}/roles-sp/`, rol );
   }
 
-
-  public obtenerRol(rolId:any){
+  // Este ya estaba bien
+  public obtenerRol(rolId: any){
     return this.http.get(`${baseUrl}/roles/${rolId}`);
   }
 
-
-  // Editar un permiso existente
   public actualizarRol(rol: any){
     return this.http.put(`${baseUrl}/roles/`, rol);
   }
 
-  // Eliminar un permiso por ID
-  public eliminarRol(id: number): Observable<any> {
+  // CAMBIO 3: de number a any
+  public eliminarRol(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
-
 }

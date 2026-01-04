@@ -107,10 +107,14 @@ import { RegistrarIncidenciaComponent } from './pages/admin/registrar-incidencia
 import { ListarIncidenciasComponent } from './pages/admin/listar-incidencias/listar-incidencias.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
 import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
+<<<<<<< HEAD
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ConfirmarPasswordComponent } from './pages/confirmar-password/confirmar-password.component';
 import { ReplaceSpacesPipe } from './pipes/replace-spaces.pipe';
+=======
+import { PdfFirmaComponent } from './pages/admin/pdf-firma/pdf-firma.component';
+>>>>>>> c1c37a5acbed0b74ed53972c2ef52d827c22270a
 
 @NgModule({
   declarations: [
@@ -124,7 +128,6 @@ import { ReplaceSpacesPipe } from './pipes/replace-spaces.pipe';
     ListUserComponent,
     AddRolComponent,
     AddUserComponent,
-    HeaderComponent,
     ListRolesComponent,
     ListPermisosComponent,
     AddPermisosComponent,
@@ -189,8 +192,9 @@ import { ReplaceSpacesPipe } from './pipes/replace-spaces.pipe';
     RegistrarPersonalLimpiezaComponent,
     ListarPersonalLimpiezaComponent,
     IaComponent,
-    AuditoriaListComponent
-
+    AuditoriaListComponent,
+    HeaderComponent,
+    PdfFirmaComponent
   ],
 
   imports: [
@@ -218,13 +222,20 @@ import { ReplaceSpacesPipe } from './pipes/replace-spaces.pipe';
     MatListModule,
     MatExpansionModule,
     MatTableModule,
+<<<<<<< HEAD
     MatSortModule,
     MatPaginatorModule,
     MatDividerModule,
     MatTabsModule,
     NgSelectModule,
     NgChartsModule
+=======
+    MatTab,
+    MatTabGroup,
+    ReactiveFormsModule,
+>>>>>>> c1c37a5acbed0b74ed53972c2ef52d827c22270a
   ],
+  exports: [HeaderComponent],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
