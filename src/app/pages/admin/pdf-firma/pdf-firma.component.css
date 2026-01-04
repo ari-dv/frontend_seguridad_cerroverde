@@ -1,0 +1,141 @@
+.container { padding: 20px; max-width: 1100px; margin: 0 auto; }
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 35px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid #edf2f7;
+}
+
+.info-categorias-linea h5 {
+  color: #002b5c;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.upload-area {
+  border: 2px dashed #e2e8f0;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-area:hover { background-color: #f8fafc; border-color: #cbd5e1; }
+
+.icon-container { color: #94a3b8; margin-bottom: 10px; }
+
+/* Estilos del Historial */
+.historial-container { margin-top: 40px; }
+
+.historial-title {
+  font-size: 1.2rem;
+  color: #1a202c;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.document-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.doc-info-wrapper { display: flex; align-items: center; gap: 15px; }
+
+.doc-icon-bg {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.bg-primary-light { background-color: #eef2ff; color: #4f46e5; }
+.bg-success-light { background-color: #f0fdf4; color: #16a34a; }
+
+.doc-details { display: flex; flex-direction: column; }
+
+.doc-name {
+  font-weight: 500;
+  color: #334155;
+  font-size: 0.95rem;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doc-time { font-size: 0.8rem; color: #94a3b8; }
+
+.doc-actions { display: flex; align-items: center; gap: 20px; }
+
+/* Badges de Estado */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-pendiente { background-color: #fffbeb; color: #b45309; }
+.status-firmado { background-color: #f0fdf4; color: #16a34a; }
+
+/* Iconos de Acción */
+.action-icons { display: flex; gap: 10px; }
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #94a3b8;
+  transition: transform 0.1s;
+}
+
+.btn-icon:hover { transform: scale(1.2); }
+
+.color-firmar { color: #6366f1; }
+
+/* ... (mantener todo lo anterior) ... */
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-icon:hover {
+  background-color: #f1f5f9;
+  color: #334155;
+  transform: translateY(-2px);
+}
+
+.color-firmar {
+  color: #6366f1;
+}
+
+.color-firmar:hover {
+  color: #4338ca;
+  background-color: #eef2ff;
+}
+
+/* Estilo para el icono de descarga específicamente */
+button[title="Descargar"]:hover {
+  color: #0ea5e9;
+  background-color: #f0f9ff;
+}

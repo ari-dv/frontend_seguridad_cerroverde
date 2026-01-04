@@ -65,6 +65,7 @@ import { ListarLimpiezaComponent } from './pages/admin/listar-limpiezas/listar-l
 import { ListarPersonalLimpiezaComponent } from './pages/admin/listar-personal-limpieza/listar-personal-limpieza.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
 import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
+import { PdfFirmaComponent } from './pages/admin/pdf-firma/pdf-firma.component';
 
 const routes: Routes = [
   {
@@ -382,6 +383,10 @@ const routes: Routes = [
       }, {
         path: 'auditoria',
         component: AuditoriaListComponent,
+      },
+      {
+        path: 'firma-digital',
+        component: PdfFirmaComponent,
       },
     ],
   },

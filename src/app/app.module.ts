@@ -113,6 +113,7 @@ import { RegistrarIncidenciaComponent } from './pages/admin/registrar-incidencia
 import { ListarIncidenciasComponent } from './pages/admin/listar-incidencias/listar-incidencias.component';
 import { IaComponent } from './pages/admin/ia/ia.component';
 import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-list.component';
+import { PdfFirmaComponent } from './pages/admin/pdf-firma/pdf-firma.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,6 @@ import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-l
     ListUserComponent,
     AddRolComponent,
     AddUserComponent,
-    HeaderComponent,
     ListRolesComponent,
     ListPermisosComponent,
     AddPermisosComponent,
@@ -190,8 +190,9 @@ import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-l
     RegistrarPersonalLimpiezaComponent,
     ListarPersonalLimpiezaComponent,
     IaComponent,
-    AuditoriaListComponent
-
+    AuditoriaListComponent,
+    HeaderComponent,
+    PdfFirmaComponent
   ],
 
   imports: [
@@ -232,8 +233,9 @@ import { AuditoriaListComponent } from './pages/admin/auditoria-list/auditoria-l
     MatTableModule,
     MatTab,
     MatTabGroup,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
+  exports: [HeaderComponent],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
